@@ -1,0 +1,34 @@
+{
+  "run": [
+    {
+      "filePath": "/ZVNSG17_MAINTAIN_QUESTIONS/webapp/test/flpSandbox.html",
+      "previewMode": 1,
+      "dataMode": 1,
+      "workspace": "withoutWorkspace",
+      "ui5ActiveVersion": "1.42.12",
+      "isDefaultVersion": 1,
+      "urlParameters": [
+        {
+          "paramName": "sap-language",
+          "paramValue": "EN"
+        }
+      ],
+      "hashParameter": "",
+      "backendSystem": [
+        {
+          "source": "WAD_001",
+          "destinations": "WAD_001"
+        }
+      ],
+      "_metadata": {
+        "id": 1558822,
+        "runnerId": "webapprunner",
+        "displayName": "Run flpSandbox.html",
+        "lastRunTimeStamp": 1512050867328
+      }
+    }
+  ],
+  "hybrid": {
+    "dirty": true
+  }
+}

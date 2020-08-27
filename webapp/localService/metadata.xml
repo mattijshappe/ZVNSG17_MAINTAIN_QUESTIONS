@@ -1,0 +1,75 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:Reference
+        xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Uri="./IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="sap.com.cds_zvnsg17_questions" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="Zvnsg17_AnswersType" sap:label="VNSG 2017 - CDS view Answers" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="vraagid"/>
+                    <PropertyRef Name="antwoordid"/>
+                </Key>
+                <Property Name="vraagid" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="VraagId" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="antwoordid" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="AntwoordId" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="antwoord" Type="Edm.String" sap:label="Antwoord"/>
+                <Property Name="juist" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Juist"/>
+                <NavigationProperty Name="to_question" Relationship="sap.com.cds_zvnsg17_questions.assoc_2C5C51D952189DB4351A832B7B6CAB10" FromRole="FromRole_assoc_2C5C51D952189DB4351A832B7B6CAB10" ToRole="ToRole_assoc_2C5C51D952189DB4351A832B7B6CAB10" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Zvnsg17_QuestionsType" sap:label="VNSG 2017 - Overview questions association to answers" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="vraagid"/>
+                </Key>
+                <Property Name="vraagid" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="NonNegative" sap:label="VraagId"/>
+                <Property Name="vraag" Type="Edm.String" sap:label="Vraag"/>
+                <Property Name="actief" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Actief"/>
+                <NavigationProperty Name="to_answers" Relationship="sap.com.cds_zvnsg17_questions.assoc_1E9185FC64DAED9FBD4302E288FB3642" FromRole="FromRole_assoc_1E9185FC64DAED9FBD4302E288FB3642" ToRole="ToRole_assoc_1E9185FC64DAED9FBD4302E288FB3642" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="assoc_1E9185FC64DAED9FBD4302E288FB3642" sap:content-version="1">
+                <End Type="sap.com.cds_zvnsg17_questions.Zvnsg17_QuestionsType" Multiplicity="1" Role="FromRole_assoc_1E9185FC64DAED9FBD4302E288FB3642"/>
+                <End Type="sap.com.cds_zvnsg17_questions.Zvnsg17_AnswersType" Multiplicity="*" Role="ToRole_assoc_1E9185FC64DAED9FBD4302E288FB3642"/>
+            </Association>
+            <Association Name="assoc_2C5C51D952189DB4351A832B7B6CAB10" sap:content-version="1">
+                <End Type="sap.com.cds_zvnsg17_questions.Zvnsg17_AnswersType" Multiplicity="1" Role="FromRole_assoc_2C5C51D952189DB4351A832B7B6CAB10"/>
+                <End Type="sap.com.cds_zvnsg17_questions.Zvnsg17_QuestionsType" Multiplicity="0..1" Role="ToRole_assoc_2C5C51D952189DB4351A832B7B6CAB10"/>
+            </Association>
+            <EntityContainer Name="sap.com.cds_zvnsg17_questions_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="Zvnsg17_Questions" EntityType="sap.com.cds_zvnsg17_questions.Zvnsg17_QuestionsType" sap:content-version="1"/>
+                <EntitySet Name="Zvnsg17_Answers" EntityType="sap.com.cds_zvnsg17_questions.Zvnsg17_AnswersType" sap:content-version="1"/>
+                <AssociationSet Name="assoc_2C5C51D952189DB4351A832B7B6CAB10" Association="sap.com.cds_zvnsg17_questions.assoc_2C5C51D952189DB4351A832B7B6CAB10" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Zvnsg17_Answers" Role="FromRole_assoc_2C5C51D952189DB4351A832B7B6CAB10"/>
+                    <End EntitySet="Zvnsg17_Questions" Role="ToRole_assoc_2C5C51D952189DB4351A832B7B6CAB10"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_1E9185FC64DAED9FBD4302E288FB3642" Association="sap.com.cds_zvnsg17_questions.assoc_1E9185FC64DAED9FBD4302E288FB3642" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="Zvnsg17_Questions" Role="FromRole_assoc_1E9185FC64DAED9FBD4302E288FB3642"/>
+                    <End EntitySet="Zvnsg17_Answers" Role="ToRole_assoc_1E9185FC64DAED9FBD4302E288FB3642"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="sap.com.cds_zvnsg17_questions.Zvnsg17_AnswersType">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>vraagid</PropertyPath>
+                        <PropertyPath>antwoordid</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations
+                xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="sap.com.cds_zvnsg17_questions.Zvnsg17_QuestionsType">
+                <Annotation Term="Common.SemanticKey">
+                    <Collection>
+                        <PropertyPath>vraagid</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZVNSG17_QUESTIONS_CDS/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZVNSG17_QUESTIONS_CDS/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

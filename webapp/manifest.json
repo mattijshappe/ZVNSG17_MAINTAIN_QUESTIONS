@@ -1,0 +1,197 @@
+{
+	"_version": "1.5.0",
+	"sap.app": {
+		"id": "ZVNSG17_MAINTAIN_QUESTIONS",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"tags": {
+			"keywords": []
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/sap/ZVNSG17_QUESTIONS_CDS/",
+				"type": "OData",
+				"settings": {
+					"annotations": [
+						"ZVNSG17_QUESTIONS_CDS_VAN",
+						"localAnnotations"
+					],
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"ZVNSG17_QUESTIONS_CDS_VAN": {
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZVNSG17_QUESTIONS_CDS_VAN',Version='0001')/$value/",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "localService/ZVNSG17_QUESTIONS_CDS_VAN.xml"
+				}
+			},
+			"localAnnotations": {
+				"uri": "annotations/annotations.xml",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "annotations/annotations.xml"
+				}
+			}
+		},
+		"offline": false,
+		"sourceTemplate": {
+			"id": "ui5template.smarttemplate",
+			"version": "1.40.12"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"resources": {
+			"js": [],
+			"css": []
+		},
+		"dependencies": {
+			"minUI5Version": "1.32.1",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ui.comp": {},
+				"sap.uxap": {},
+				"sap.suite.ui.generic.template": {},
+				"sap.ui.layout": {},
+				"sap.ushell": {},
+				"sap.collaboration": {}
+			},
+			"components": {}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			},
+			"i18n|sap.suite.ui.generic.template.ListReport|Zvnsg17_Questions": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/ListReport/Zvnsg17_Questions/i18n.properties"
+			},
+			"i18n|sap.suite.ui.generic.template.ObjectPage|Zvnsg17_Questions": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/ObjectPage/Zvnsg17_Questions/i18n.properties"
+			},
+			"i18n|sap.suite.ui.generic.template.ObjectPage|Zvnsg17_Answers": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/ObjectPage/Zvnsg17_Answers/i18n.properties"
+			},
+			"": {
+				"dataSource": "mainService",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Inline",
+					"refreshAfterChange": true
+				}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.viewExtensions": {
+					"sap.suite.ui.generic.template.ObjectPage.view.Details": {
+						"AfterFacet|Zvnsg17_Questions|GeneralInformation": {
+							"type": "XML",
+							"className": "sap.ui.core.Fragment",
+							"fragmentName": "ZVNSG17_MAINTAIN_QUESTIONS.ext.fragment.Question",
+							"sap.ui.generic.app": {
+								"title": "{@i18n>Question}"
+							}
+						}
+					}
+				},
+				"sap.ui.controllerExtensions": {
+					"sap.suite.ui.generic.template.ObjectPage.view.Details": {
+						"controllerName": "ZVNSG17_MAINTAIN_QUESTIONS.ext.controller.ObjectPageExt",
+						"sap.ui.generic.app": {
+							"Zvnsg17_Questions": {
+								"EntitySet": "Zvnsg17_Questions",
+								"Header": {
+									"Actions": {
+										"ActionZvnsg17_QuestionsHeader1": {
+											"id": "ActionZvnsg17_QuestionsHeader1button",
+											"text": "{@i18n>ActionZvnsg17_QuestionsHeader1}",
+											"press": "onClickActionZvnsg17_QuestionsHeader1"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"sap.ui.generic.app": {
+		"pages": [
+			{
+				"entitySet": "Zvnsg17_Questions",
+				"component": {
+					"name": "sap.suite.ui.generic.template.ListReport",
+					"list": true,
+					"settings": {
+						"multiSelect": true,
+						"liveMode": true
+					}
+				},
+				"pages": [
+					{
+						"entitySet": "Zvnsg17_Questions",
+						"component": {
+							"name": "sap.suite.ui.generic.template.ObjectPage"
+						},
+						"pages": [
+							{
+								"navigationProperty": "to_answers",
+								"entitySet": "Zvnsg17_Answers",
+								"component": {
+									"name": "sap.suite.ui.generic.template.ObjectPage"
+								}
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zvnsg_questions/webapp",
+		"_version": "1.1.0"
+	}
+}

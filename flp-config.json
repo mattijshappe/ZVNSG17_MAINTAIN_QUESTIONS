@@ -1,0 +1,36 @@
+{
+    "application": {
+        "id": "",
+        "title": "ZVNSG17_MAINTAIN_QUESTIONS.ZVNSG17_MAINTAIN_QUESTIONS",
+        "description": "Manage Questions",
+        "type": "SAP_UI5_Component",
+        "componentUrl": "/",
+        "appUrl": "#ZVNSG17_MAINTAIN_QUESTIONS-Display",
+        "navigationComponentName": "ZVNSG17_MAINTAIN_QUESTIONS",
+        "intentSemanticObject": "ZVNSG17_MAINTAIN_QUESTIONS",
+        "intentAction": "Display",
+        "html5ApplicationName": "zvnsg17maintainquestions",
+        "HCPParentApplicationName": ""
+    },
+    "assignment": {
+        "groups": [
+            "70598002-fe43-4a57-9524-b32ea143246e-1487190280492"
+        ],
+        "contentPackages": [
+            "3dc51a30-eb80-42c4-8947-6880d3460c20-1487190244899"
+        ],
+        "categories": []
+    },
+    "tile": {
+        "type": "DynamicTile",
+        "title": "Manage questions",
+        "subtitle": "",
+        "searchKeywords": "Manage questions,",
+        "displayIconUrl": "sap-icon://question-mark",
+        "displayInfoText": "",
+        "size": "1x1",
+        "serviceURL": "/sap/fiori/zvnsg17maintainquestions/sap/opu/odata/sap/ZVNSG17_QUESTIONS_CDS/Zvnsg17_Questions/$count",
+        "refreshInterval": "60",
+        "displayNumberUnit": "Zvnsg17_QuestionsType"
+    }
+}
